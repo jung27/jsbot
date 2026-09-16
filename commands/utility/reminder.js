@@ -68,6 +68,12 @@ module.exports = {
     }
 
     const date = new Date(year, month - 1, day, hour, minute);
+    if (date < new Date()) {
+      await interaction.reply(
+        "어 과거로는 낵 ㅏ어떻게 햊ㄹ 수 있는게 없다. 수고해라~",
+      );
+      return;
+    }
 
     schedule.scheduleJob(date, async () => {
       await interaction.followUp(
