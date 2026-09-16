@@ -82,10 +82,42 @@ module.exports = {
     }
 
     const channel = interaction.channel;
+
+    const jobId = Date.now().toString(); // 고유 ID 생성 (저장 및 삭제용)
+    const newSchedule = {
+      id: jobId,
+      date: kstDateString,
+      channelId: interaction.channel.id, // 보낼 채널 저장
+      userId: interaction.user.id, // 예약한 사람 저장
+      message: message, // 내용 저장
+    };
+
+    const schedulesPath = path.join(__dirname, "../../schedules.json");
+
+    // 파일 읽어서 새 예약 추가 후 다시 저장
+    let schedules = [];
+    if (fs.existsSync(schedulesPath)) {
+      schedules = JSON.parse(fs.readFileSync(schedulesPath, "utf-8"));
+    }
+    schedules.push(newSchedule);
+    fs.writeFileSync(schedulesPath, JSON.stringify(schedules, null, 2));
+    // ------------------------------------
+
     schedule.scheduleJob(date, async () => {
       await channel.send(
-        `<@${interaction.user.id}> 어 그래 형이다. ${year}-${month}-${day} ${hour}:${minute}라서 말해주는건데, \n${message}`,
+        `<@${interaction.user.id}> 어 그래 형이다. ${year}-${monthString}-${dayString} ${hourString}:${minuteString}라서 말해주는건데, \n${message}`,
       );
+
+      if (fs.existsSync(schedulesPath)) {
+        let currentSchedules = JSON.parse(
+          fs.readFileSync(schedulesPath, "utf-8"),
+        );
+        currentSchedules = currentSchedules.filter((s) => s.id !== jobId);
+        fs.writeFileSync(
+          schedulesPath,
+          JSON.stringify(currentSchedules, null, 2),
+        );
+      }
     });
     await interaction.reply(
       `어 그래 형이 ${year}-${monthString}-${dayString} ${hourString}:${minuteString} 이때 "${message}" 이렇게 말해줄게~`,
