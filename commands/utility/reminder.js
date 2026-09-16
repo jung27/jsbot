@@ -67,11 +67,16 @@ module.exports = {
       return;
     }
 
-    const kstDateString = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}:00+09:00`;
+    const monthString = String(month).padStart(2, "0");
+    const dayString = String(day).padStart(2, "0");
+    const hourString = String(hour).padStart(2, "0");
+    const minuteString = String(minute).padStart(2, "0");
+
+    const kstDateString = `${year}-${monthString}-${dayString}T${hourString}:${minuteString}:00+09:00`;
     const date = new Date(kstDateString);
     if (date < new Date()) {
       await interaction.reply(
-        "어 과거로는 낵 ㅏ어떻게 햊ㄹ 수 있는게 없다. 수고해라~",
+        "어 과거로는 내가 어떻게 햊ㄹ 수 있는게 없다. 수고해라~",
       );
       return;
     }
@@ -83,7 +88,7 @@ module.exports = {
       );
     });
     await interaction.reply(
-      `어 그래 형이 ${year}-${month}-${day} ${hour}:${minute} 이때 "${message}" 이렇게 말해줄게~`,
+      `어 그래 형이 ${year}-${monthString}-${dayString} ${hourString}:${minuteString} 이때 "${message}" 이렇게 말해줄게~`,
     );
   },
 };
