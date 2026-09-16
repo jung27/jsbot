@@ -33,9 +33,15 @@ const loadSchedules = () => {
 
         schedule.scheduleJob(targetDate, async () => {
           const channel = client.channels.cache.get(sched.channelId);
+          const year = targetDate.getFullYear();
+          const month = String(targetDate.getMonth() + 1).padStart(2, "0");
+          const day = String(targetDate.getDate()).padStart(2, "0");
+          const hour = String(targetDate.getHours()).padStart(2, "0");
+          const minute = String(targetDate.getMinutes()).padStart(2, "0");
+
           if (channel) {
             await channel.send(
-              `<@${sched.userId}> 어 그래 형이다. ${sched.date}라서 말해주는건데, \n"${sched.message}"`,
+              `<@${sched.userId}> 어 그래 형이다. ${year}-${month}-${day} ${hour}:${minute}라서 말해주는건데, \n"${sched.message}"`,
             );
           }
 
