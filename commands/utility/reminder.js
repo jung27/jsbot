@@ -67,7 +67,8 @@ module.exports = {
       return;
     }
 
-    const date = new Date(year, month - 1, day, hour, minute);
+    const kstDateString = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}T${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}:00+09:00`;
+    const date = new Date(kstDateString);
     if (date < new Date()) {
       await interaction.reply(
         "어 과거로는 낵 ㅏ어떻게 햊ㄹ 수 있는게 없다. 수고해라~",
@@ -75,9 +76,10 @@ module.exports = {
       return;
     }
 
+    const channel = interaction.channel;
     schedule.scheduleJob(date, async () => {
-      await interaction.followUp(
-        `${year}-${month}-${day} ${hour}:${minute}라서 말해주는건데, \n${message}`,
+      await channel.send(
+        `<@${interaction.user.id}> 어 그래 형이다. ${year}-${month}-${day} ${hour}:${minute}라서 말해주는건데, \n${message}`,
       );
     });
     await interaction.reply(
