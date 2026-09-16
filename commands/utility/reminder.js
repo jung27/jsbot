@@ -1,3 +1,5 @@
+const fs = require("node:fs");
+const path = require("node:path");
 const { SlashCommandBuilder } = require("discord.js");
 const schedule = require("node-schedule");
 
@@ -92,7 +94,7 @@ module.exports = {
       message: message, // 내용 저장
     };
 
-    const schedulesPath = path.join(__dirname, "../../schedules.json");
+    const schedulesPath = path.join(process.cwd(), "schedules.json");
 
     // 파일 읽어서 새 예약 추가 후 다시 저장
     let schedules = [];

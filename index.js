@@ -15,7 +15,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 const loadSchedules = () => {
   // 봇 폴더 최상단에 있는 schedules.json 경로 설정
-  const schedulesPath = path.join(__dirname, "schedules.json");
+  const schedulesPath = path.join(process.cwd(), "schedules.json");
 
   // 저장된 스케줄 파일이 있다면 읽어오기
   if (fs.existsSync(schedulesPath)) {
