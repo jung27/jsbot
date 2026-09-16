@@ -9,6 +9,7 @@ const {
   MessageFlags,
 } = require("discord.js");
 const { token } = require("./config.json");
+const schedule = require("node-schedule");
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
