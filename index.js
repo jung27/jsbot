@@ -32,7 +32,7 @@ const loadSchedules = () => {
         remainingSchedules.push(sched);
 
         schedule.scheduleJob(targetDate, async () => {
-          const channel = readyClient.channels.cache.get(sched.channelId);
+          const channel = client.channels.cache.get(sched.channelId);
           if (channel) {
             await channel.send(
               `<@${sched.userId}> 어 그래 형이다. ${sched.date}라서 말해주는건데, \n"${sched.message}"`,
