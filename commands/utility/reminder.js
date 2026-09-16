@@ -65,7 +65,7 @@ module.exports = {
       minute < 0 ||
       minute > 59
     ) {
-      await interaction.reply(
+      await interaction.editReply(
         "아잇 제대로 쓰삼. 년은 2026년 이상, 월은 1~12, 일은 1~31, 시는 0~23, 분은 0~59로 입력해라이야이야ㅑㅑㅑ",
       );
       return;
@@ -79,7 +79,7 @@ module.exports = {
     const kstDateString = `${year}-${monthString}-${dayString}T${hourString}:${minuteString}:00+09:00`;
     const date = new Date(kstDateString);
     if (date < new Date()) {
-      await interaction.reply(
+      await interaction.editReply(
         "어 과거로는 내가 어떻게 햊ㄹ 수 있는게 없다. 수고해라~",
       );
       return;
@@ -123,7 +123,7 @@ module.exports = {
         );
       }
     });
-    await interaction.reply(
+    await interaction.editReply(
       `어 그래 형이 ${year}-${monthString}-${dayString} ${hourString}:${minuteString} 이때 "${message}" 이렇게 말해줄게~`,
     );
   },
