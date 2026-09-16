@@ -46,6 +46,8 @@ module.exports = {
         .setRequired(true),
     ),
   async execute(interaction) {
+    await interaction.deferReply();
+
     const year = interaction.options.getInteger("년");
     const month = interaction.options.getInteger("월");
     const day = interaction.options.getInteger("일");
