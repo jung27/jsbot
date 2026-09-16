@@ -18,6 +18,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 // It makes some properties non-nullable.
 client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+  console.log("현재 서버 시간:", new Date().toString());
 });
 
 // Log in to Discord with your client's token
