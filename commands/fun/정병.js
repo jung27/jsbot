@@ -48,40 +48,40 @@ module.exports = {
     if (subcommand === "전염") {
       if (!hasRole) {
         await interaction.reply({
-          content: "정병이 없는 사람은 전염시킬 수 없습니다.",
+          content: "어 닌 정병 아니라서 그런거 모단다잉~",
           ephemeral: true,
         });
         return;
       }
       if (targetHasRole) {
         await interaction.reply({
-          content: `${targetUser.username}님은 이미 정병이 있습니다.`,
+          content: `${targetUser.username} 얜 이미 정병이 있는 아이야.`,
           ephemeral: true,
         });
         return;
       }
       await targetMember.roles.add(role);
       await interaction.reply({
-        content: `${targetUser.username}님에게 정병을 전염시켰습니다.`,
+        content: `${targetUser.username}가 정병이 도졌스요!ㅠㅠ`,
       });
     } else if (subcommand === "치료") {
       if (hasRole) {
         await interaction.reply({
-          content: "정병이 있는 사람은 치료할 수 없습니다.",
+          content: "닌 정병이라 그란거 못해여~",
           ephemeral: true,
         });
         return;
       }
       if (!targetHasRole) {
         await interaction.reply({
-          content: `${targetUser.username}님은 정병이 없습니다.`,
+          content: `${targetUser.username} 얜 정병이 없는 아이다 돌팔이야`,
           ephemeral: true,
         });
         return;
       }
       await targetMember.roles.remove(role);
       await interaction.reply({
-        content: `${targetUser.username}님을 치료했습니다.`,
+        content: `${targetUser.username}가 무려 정병 !완 치!`,
       });
     }
   },
