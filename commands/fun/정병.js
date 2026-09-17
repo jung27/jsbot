@@ -63,7 +63,6 @@ module.exports = {
       await targetMember.roles.add(role);
       await interaction.reply({
         content: `${targetUser.username}님에게 정병을 전염시켰습니다.`,
-        ephemeral: true,
       });
     } else if (subcommand === "치료") {
       if (hasRole) {
@@ -83,7 +82,6 @@ module.exports = {
       await targetMember.roles.remove(role);
       await interaction.reply({
         content: `${targetUser.username}님을 치료했습니다.`,
-        ephemeral: true,
       });
     }
   },
